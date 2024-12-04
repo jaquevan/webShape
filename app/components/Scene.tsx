@@ -1,11 +1,14 @@
 "use client";
-
 import dirt from "../public/dirt.png";
 import { useEffect } from "react";
-
 import * as THREE from "three";
 
-export default function Scene({ shape = "cube" }: { shape: string }) {
+interface SceneProps {
+  shape: string;
+  textureUrl: string;
+}
+
+export default function Scene({ shape = "cube", textureUrl }: SceneProps) {
   useEffect(() => {
     // https://threejs.org/docs/#manual/en/introduction/Creating-a-scene
     // create variables for scene and camera
@@ -29,11 +32,12 @@ export default function Scene({ shape = "cube" }: { shape: string }) {
     document.body.appendChild(renderer.domElement);
 
     const textureLoader = new THREE.TextureLoader();
-    const texture = textureLoader.load(dirt.src);
+    const texture = textureUrl
+      ? textureLoader.load(textureUrl)
+      : textureLoader.load(dirt.src);
 
     // creates the shape from three, allows you to put a texture and assign that to a variable
 
-    console.log(shape);
     let geometry;
     switch (shape) {
       case "cone":
@@ -48,10 +52,9 @@ export default function Scene({ shape = "cube" }: { shape: string }) {
         geometry = new THREE.BoxGeometry(1, 1, 1); //https://threejs.org/docs/#api/en/geometries/BoxGeometry
         break;
     }
-    console.log(geometry);
     const material = new THREE.MeshBasicMaterial({ map: texture }); // color or image texture
-    const cube = new THREE.Mesh(geometry, material); // combine geometry and material
-    scene.add(cube); // add the cube to the scene
+    const mesh = new THREE.Mesh(geometry, material); // combine geometry and material
+    scene.add(mesh); // add the cube to the scene
 
     // camera position, z plays with the distance we are looking at the shape
     camera.position.z = 2; // both camera and cube are at cords (0,0,0), so we move the camera back
@@ -60,8 +63,8 @@ export default function Scene({ shape = "cube" }: { shape: string }) {
     const animate = () => {
       requestAnimationFrame(animate);
       //x and y axis rotation values, these play with the speed of roatation
-      cube.rotation.x += 0.0;
-      cube.rotation.y += 0.01;
+      mesh.rotation.x += 0.0;
+      mesh.rotation.y += 0.01;
       renderer.render(scene, camera);
     };
 
@@ -72,6 +75,6 @@ export default function Scene({ shape = "cube" }: { shape: string }) {
     return () => {
       document.body.removeChild(renderer.domElement);
     };
-  }, [shape]); // re-render when shape changes
+  }, [shape, textureUrl]); // re-render when shape or textureUrl changes
   return <></>;
 }
