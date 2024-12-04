@@ -1,32 +1,30 @@
-"use client"
+"use client";
 import ShapeSelector from "@/app/components/ShapeSelector";
-import Cube from "@/app/components/Cube";
 import styled from "styled-components";
-import {Typography} from "@mui/material";
+import { Typography } from "@mui/material";
+import Scene from "./components/Scene";
+import { useState } from "react";
 
 const Title = styled(Typography)`
-    padding: 1%;
-    text-align:center;
+  padding: 1%;
+  text-align: center;
 `;
 
 const StyledDiv = styled.div`
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 `;
 
 export default function Home() {
+  const [shape, setShape] = useState("");
+  console.log(shape);
   return (
-      <>
-          <Title variant="h1">Three.js Demo</Title>
-          <ShapeSelector/>
-            {/*this is here as filler for now, we can add more shapes and makde it conditional based on the input*/}
-          <StyledDiv>
-              <Cube/>
-          </StyledDiv>
-
-
-
-      </>
-
+    <>
+      <Title variant="h1">Three.js Demo</Title>
+      <ShapeSelector shape={shape} setShape={setShape} />
+      <StyledDiv>
+        <Scene shape={shape} />
+      </StyledDiv>
+    </>
   );
 }
