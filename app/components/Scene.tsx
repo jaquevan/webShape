@@ -45,7 +45,7 @@ export default function Scene({ shape = "cube", textureUrl }: SceneProps) {
         console.log("hello");
         break;
       case "sphere":
-        geometry = new THREE.SphereGeometry(0.5, 32, 32); //https://threejs.org/docs/#api/en/geometries/SphereGeometry
+        geometry = new THREE.SphereGeometry(0.7, 32, 32); //https://threejs.org/docs/#api/en/geometries/SphereGeometry
         break;
       case "cube":
       default:

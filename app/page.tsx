@@ -8,6 +8,9 @@ import { useState } from "react";
 const Title = styled(Typography)`
   padding: 1%;
   text-align: center;
+    color: darkorange;
+    background-color: slategrey;
+    margin-bottom: 1%;
 `;
 
 const StyledDiv = styled.div`
