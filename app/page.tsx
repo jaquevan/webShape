@@ -14,9 +14,12 @@ const Title = styled(Typography)`
 `;
 
 const StyledDiv = styled.div`
-  margin-top: -6rem;
-  display: flex;
-  justify-content: center;
+    display: block;
+    justify-content: center;
+    align-items: center;
+    margin: -6rem auto;
+    width: 100%;
+    height: auto;
 `;
 
 export default function Home() {

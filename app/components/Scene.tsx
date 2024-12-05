@@ -27,6 +27,7 @@ export default function Scene({ shape = "cube", textureUrl }: SceneProps) {
     // set alpha to true to remove background from shape
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.domElement.style.width = "100%"; // Set canvas width to 100%
     // you could make an image half size by .setSize(window.innerWidth / 2, window.innerHeight / 2)
 
     document.body.appendChild(renderer.domElement);
