@@ -68,8 +68,8 @@ const ShapeSelector: React.FC<ShapeSelectorProps> = ({
         placeholder="Enter texture URL"
         onChange={handleTextureUrlChange}
       />
-      <p style={{ color: "lightgray" }}>
-        try: https://www.bu.edu/cs/files/2023/07/profile.jpg
+      <p style={{ color: "blue" }}>
+        try: https://a-z-animals.com/media/2022/09/shutterstock_88192939-1024x768.jpg
       </p>
     </Container>
   );
